@@ -5,7 +5,7 @@ namespace Araba
 {
     public partial class Form1 : Form
     {
-        string connection = @"Data Source=DESKTOP-SPCGLO9\SQLEXPRESS;Initial Catalog=Araba;Integrated Security=SSPI;";
+        string connection = @"Data Source=(localdb);Initial Catalog=Araba;Integrated Security=SSPI;";
         int secilenMarkaTipi = 0;
         int secilenModelTipi = 0;
         int secilenKasaTipi = 0;
@@ -26,7 +26,7 @@ namespace Araba
                 Model md = new Model
                 {
                     ModelId = -1,
-                    ModelAdi = "Model Seçiniz"
+                    ModelAdi = "Model SeÃ§iniz"
                 };
                 modellist.Add(md);
             }
@@ -48,7 +48,7 @@ namespace Araba
                     Marka m = new Marka
                     {
                         MarkaId = -1,
-                        MarkaAdi = "Marka Seçiniz"
+                        MarkaAdi = "Marka SeÃ§iniz"
                     };
                     markalist.Add(m);
                     while (reader.Read())
@@ -80,7 +80,7 @@ namespace Araba
                 Model md = new Model
                 {
                     ModelId = -1,
-                    ModelAdi = "Model Seçiniz"
+                    ModelAdi = "Model SeÃ§iniz"
                 };
                 modellist.Add(md);
             }
@@ -102,7 +102,7 @@ namespace Araba
                     Model md = new Model
                     {
                         ModelId = -1,
-                        ModelAdi = "Model Seçiniz"
+                        ModelAdi = "Model SeÃ§iniz"
                     };
                     modellist.Add(md);
                     while (reader.Read())
@@ -139,7 +139,7 @@ namespace Araba
                     Kasa k = new Kasa
                     {
                         KasaId = -1,
-                        KasaAdi = "Kasa Tipi Seçiniz"
+                        KasaAdi = "Kasa Tipi SeÃ§iniz"
                     };
                     kasalist.Add(k);
                     while (reader.Read())
@@ -202,7 +202,7 @@ namespace Araba
                     SqlCommand command = new SqlCommand("INSERT INTO Araba(MarkId, ModelId, KasaId, kapisayisi, penceresayisi) " +
                     "VALUES(@MarkaId, @ModelId, @KasaId, @KapiSayisi, @PencereSayisi)", conn);
 
-                    // Parametreleri ekleyin ve uygun türleri belirtin (SQL enjeksiyonunu önlemek için).
+                    // Parametreleri ekleyin ve uygun tÃ¼rleri belirtin (SQL enjeksiyonunu Ã¶nlemek iÃ§in).
                     command.Parameters.AddWithValue("@MarkaId", secilenMarkaTipi.ToString());
                     command.Parameters.AddWithValue("@ModelId", secilenModelTipi);
                     command.Parameters.AddWithValue("@KasaId", secilenKasaTipi);
@@ -214,7 +214,7 @@ namespace Araba
                     if (etkilenenKayitSayisi > 0)
                     {
 
-                        // Verileri çeken kısım (ArabaGetir metodu çağırılabilir)
+                        // Verileri Ã§eken kÃ½sÃ½m (ArabaGetir metodu Ã§aÃ°Ã½rÃ½labilir)
                         ArabaGetir();
 
                     }
@@ -234,7 +234,7 @@ namespace Araba
             {
                 conn.Open();
                 string sorgu = "Select Marka.MarkaAdi as Marka,Model.ModelAdi as Model, " +
-                    "K.KasaTipi as Kasa,A.KapiSayisi as 'Kapı Sayısı' ,A.PencereSayisi as 'Pencere Sayısı' " +
+                    "K.KasaTipi as Kasa,A.KapiSayisi as 'KapÃ½ SayÃ½sÃ½' ,A.PencereSayisi as 'Pencere SayÃ½sÃ½' " +
                     "from Araba as A inner join Marka on Marka.id = A.MarkId inner join Model on Model.id = A.ModelId " +
                     "inner join Kasa K on K.id = A.KasaID";
 
